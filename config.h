@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "I", "II", "III", "IV", "V" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -60,6 +60,15 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+/* Print screen */
+
+/* Whole screen print */
+static const char *printscreencmd[] = { "/home/folclore/bin/printscreen", NULL };
+
+/* Select screen print */
+static const char *printscreenscmd[] = { "/home/folclore/bin/printscreen", "select", NULL };
+
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -85,6 +94,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    { 0,                            XK_Print,  spawn,          {.v = printscreencmd} },
+    { MODKEY,                       XK_Print,  spawn,          {.v = printscreenscmd} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
